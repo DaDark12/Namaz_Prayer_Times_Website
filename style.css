@@ -1,4 +1,6 @@
-/* General Body & Header */
+/* ===================== */
+/* GENERAL SITE STYLING  */
+/* ===================== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(to right, #fefefe, #ddd);
@@ -19,7 +21,9 @@ h1, h2 {
     margin: 10px 0;
 }
 
-/* Prayer Times */
+/* ===================== */
+/* PRAYER TIMES SECTION  */
+/* ===================== */
 .prayer-times {
     margin: 20px auto;
     padding: 20px;
@@ -41,7 +45,9 @@ h1, h2 {
     margin: 5px 0;
 }
 
-/* Qibla Finder */
+/* ===================== */
+/* QIBLA FINDER SECTION  */
+/* ===================== */
 .qibla-section {
     margin: 30px auto;
 }
@@ -60,13 +66,14 @@ h1, h2 {
     border-radius: 50%;
     position: relative;
     background: radial-gradient(circle at center, #fff, #ccc);
-    transition: transform 1s ease-out;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 1s ease-out;
 }
 
+/* Compass needle */
 #qibla-needle {
     width: 4px;
     height: 70px;
@@ -75,7 +82,20 @@ h1, h2 {
     top: 15px;
     transform-origin: bottom center;
     border-radius: 2px;
-    box-shadow: 0 0 8px rgba(179,0,0,0.8);
+    box-shadow: 0 0 12px rgba(179,0,0,0.9);
+    transition: transform 1s ease-out;
+}
+
+/* Needle reflection / glow */
+.compass-glow {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    background: radial-gradient(circle at center, rgba(255,0,0,0.2), transparent 70%);
+    pointer-events: none;
 }
 
 #qibla-angle {
@@ -84,7 +104,9 @@ h1, h2 {
     font-weight: bold;
 }
 
-/* View Switch Button */
+/* ===================== */
+/* VIEW SWITCH BUTTON     */
+/* ===================== */
 #view-switch {
     margin-top: 20px;
     padding: 8px 15px;
@@ -99,12 +121,17 @@ h1, h2 {
     background-color: #ddd;
 }
 
-/* Footer */
+/* ===================== */
+/* FOOTER STYLING         */
+/* ===================== */
 footer {
     padding: 15px 0;
     background: #222;
     color: #fff;
 }
 
-/* Responsive adjustments */
+/* ===================== */
+/* RESPONSIVE MOBILE VIEW */
+/* ===================== */
 .mobile-view #qibla-compass { width: 120px; height: 120px; }
+.mobile-view #qibla-needle { height: 55px; }
