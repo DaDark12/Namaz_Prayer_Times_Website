@@ -1,45 +1,45 @@
+<!-- index.html -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Namaz Times — Shia (Cinema)</title>
+  <title>Namaz Times — Shia (Searchable Cities, Liquid Glass)</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main class="container">
     <header class="header">
       <h1>Namaz Times <span class="micro">— Shia (Jafari)</span></h1>
-      <p class="subtitle">Auto geo + dropdown fallback • cinematic UI • connect to IslamicAPI (method=0)</p>
+      <p class="subtitle">Search any city • liquid-glass UI • paste RapidAPI &amp; Prayer API keys</p>
     </header>
 
     <section class="controls">
       <div class="left">
         <label class="field">
-          <span>API Key (optional)</span>
-          <input id="apiKey" placeholder="Paste IslamicAPI key (or leave blank)" />
+          <span>Prayer API Key (optional)</span>
+          <input id="apiKey" placeholder="Paste IslamicAPI key (or leave blank)" autocomplete="off" />
+        </label>
+
+        <label class="field">
+          <span>GeoDB RapidAPI Key (for global searchable cities)</span>
+          <input id="geoKey" placeholder="Paste your RapidAPI key (optional)" autocomplete="off" />
         </label>
 
         <div class="row">
-          <button id="geoBtn" class="btn">Auto-detect location</button>
-          <select id="citySelect" aria-label="Choose city">
-            <option value="">— Choose a city —</option>
+          <div class="searchWrap">
+            <input id="citySearch" placeholder="Search city — e.g. Muscat, Tehran, Najaf" autocomplete="off" />
+            <ul id="cityResults" class="results hidden" role="listbox" aria-label="Search results"></ul>
+          </div>
+          <select id="presetSelect" aria-label="Quick picks">
+            <option value="">Quick picks</option>
             <option data-lat="23.5880" data-lon="58.3829">Muscat, Oman</option>
             <option data-lat="35.6892" data-lon="51.3890">Tehran, Iran</option>
-            <option data-lat="31.5204" data-lon="74.3587">Lahore, Pakistan</option>
             <option data-lat="31.7683" data-lon="35.2137">Jerusalem</option>
-            <option data-lat="29.9511" data-lon="31.2060">Cairo, Egypt</option>
-            <option data-lat="34.0160" data-lon="71.5785">Peshawar, Pakistan</option>
-            <option data-lat="34.0167" data-lon="71.5333">Kabul, Afghanistan</option>
+            <option data-lat="31.5204" data-lon="74.3587">Lahore, Pakistan</option>
             <option data-lat="32.5364" data-lon="44.4200">Karbala, Iraq</option>
             <option data-lat="34.3200" data-lon="44.3900">Najaf, Iraq</option>
-            <option value="custom">Custom lat/lon →</option>
           </select>
-        </div>
-
-        <div id="customCoords" class="hidden">
-          <input id="lat" placeholder="Latitude (e.g. 23.5880)" />
-          <input id="lon" placeholder="Longitude (e.g. 58.3829)" />
         </div>
 
         <div class="row small">
@@ -49,13 +49,14 @@
 
         <div class="row">
           <button id="fetchBtn" class="btn primary">Get Namaz Times</button>
-          <button id="refreshBtn" class="btn ghost">Refresh</button>
+          <button id="clearBtn" class="btn ghost">Clear</button>
         </div>
       </div>
 
       <div class="right status">
         <div id="locationReadout" class="location">Location: —</div>
         <div id="dateReadout" class="date">Date: —</div>
+        <div id="statusMsg" class="statusMsg">Ready — search a city and press Get Namaz Times.</div>
       </div>
     </section>
 
