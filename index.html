@@ -5,30 +5,34 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Shia Namaz Times — Cinema</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- animated canvas background -->
   <canvas id="bgCanvas" aria-hidden="true"></canvas>
 
-  <main class="wrap">
+  <main class="wrap" role="main">
     <header class="brand">
-      <div class="logo">🕌</div>
+      <div class="logo" aria-hidden="true">🕌</div>
       <div>
         <h1>Shia Namaz Times</h1>
-        <p class="tagline">Jafari timings • cinematic UI • Next prayer live</p>
+        <p class="tagline">Jafari timings • global cities • cinematic UI</p>
       </div>
     </header>
 
-    <section class="panel glass">
+    <section class="panel glass" aria-labelledby="panel-title">
+      <h2 id="panel-title" class="sr-only">Find prayer times</h2>
+
       <div class="search-row">
-        <input id="cityInput" placeholder="Search city — e.g. Muscat, Tehran, Najaf" autocomplete="off" />
-        <button id="getBtn" class="btn-primary">Get Times</button>
+        <div class="searchWrap">
+          <input id="cityInput" placeholder="Search city (type & press Enter) — e.g. Muscat" autocomplete="off" aria-autocomplete="list" />
+          <ul id="cityResults" class="results hidden" role="listbox" aria-label="search results"></ul>
+        </div>
+        <button id="getBtn" class="btn-primary" title="Fetch prayer times">Get Times</button>
       </div>
 
-      <div class="meta" id="meta">No city selected • paste exact city name for accuracy</div>
+      <div class="meta" id="meta">No city selected • search any location worldwide</div>
 
-      <div class="grid" id="cards">
+      <div class="grid" id="cards" aria-live="polite">
         <div class="card">
           <div class="label">Fajr</div>
           <div class="time" id="fajr">--:--</div>
@@ -64,17 +68,18 @@
       <div class="controls">
         <select id="providerSelect" title="Choose API provider">
           <option value="aladhan">Aladhan (no key)</option>
-          <option value="islamicapi">IslamicAPI (Jafari if available)</option>
+          <option value="islamicapi">IslamicAPI (optional key)</option>
         </select>
         <input id="apiKey" placeholder="Optional API key (IslamicAPI)" />
         <button id="clearBtn" class="btn-ghost">Clear</button>
       </div>
     </section>
 
-    <footer class="footer">Static site • GitHub Pages ready • Built by Ali — Cinema mode</footer>
+    <footer class="footer">Static, GitHub Pages ready • Built by Ali — Cinema mode</footer>
   </main>
 
   <script src="background.js" defer></script>
+  <script src="utils.js" defer></script>
   <script src="app.js" defer></script>
 </body>
 </html>
