@@ -7,19 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- ===================== -->
-    <!-- HEADER -->
-    <!-- ===================== -->
     <header>
         <h1>Namaz Prayer Times & Qibla Finder</h1>
     </header>
 
-    <!-- ===================== -->
-    <!-- MAIN CONTENT -->
-    <!-- ===================== -->
     <main>
-        <!-- PRAYER TIMES -->
+        <!-- Prayer Times Section -->
         <section class="prayer-times">
             <h2>Prayer Times</h2>
             <ul id="prayer-list">
@@ -31,14 +24,12 @@
             </ul>
         </section>
 
-        <!-- QIBLA FINDER -->
+        <!-- Qibla Finder Section -->
         <section class="qibla-section">
             <h2>Qibla Finder</h2>
             <div class="qibla-container">
-                <!-- Compass Circle -->
                 <div id="qibla-compass">
                     <div id="qibla-needle"></div>
-                    <div class="compass-glow"></div>
                 </div>
                 <div id="qibla-angle">—°</div>
                 <button id="view-switch">Switch View</button>
@@ -46,31 +37,16 @@
         </section>
     </main>
 
-    <!-- ===================== -->
-    <!-- FOOTER -->
-    <!-- ===================== -->
     <footer>
         <p>© 2025 Namaz Prayer Times</p>
     </footer>
 
-    <!-- ===================== -->
-    <!-- ORIGINAL SCRIPTS -->
-    <!-- ===================== -->
-    <script src="your-original-scripts.js"></script>
-
-    <!-- ===================== -->
-    <!-- QIBLA + RESPONSIVE SCRIPT -->
-    <!-- ===================== -->
+    <!-- Qibla Script -->
     <script>
-    // --------------------
-    // UTILITY FUNCTIONS
-    // --------------------
+    // ----- Qibla Calculation -----
     function toRadians(deg) { return deg * Math.PI / 180; }
     function toDegrees(rad) { return rad * 180 / Math.PI; }
 
-    // --------------------
-    // CALCULATE QIBLA DIRECTION
-    // --------------------
     function calculateQibla(lat, lon) {
         const kaabaLat = 21.4225;
         const kaabaLon = 39.8262;
@@ -86,9 +62,6 @@
         return qibla;
     }
 
-    // --------------------
-    // UPDATE COMPASS
-    // --------------------
     function updateQibla() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((pos) => {
@@ -96,21 +69,17 @@
                 const lon = pos.coords.longitude;
                 const qibla = calculateQibla(lat, lon);
 
-                const needle = document.getElementById("qibla-needle");
-                const angleDisplay = document.getElementById("qibla-angle");
-                if(needle) needle.style.transform = `rotate(${qibla}deg)`;
-                if(angleDisplay) angleDisplay.innerText = Math.round(qibla) + "°";
+                document.getElementById("qibla-angle").innerText = Math.round(qibla) + "°";
+                document.getElementById("qibla-needle").style.transform = `rotate(${qibla}deg)`;
             }, () => {
-                console.warn("Location permission denied.");
+                alert("Unable to get your location. Please allow location access.");
             });
         } else {
-            console.warn("Geolocation not supported.");
+            alert("Geolocation not supported in your browser.");
         }
     }
 
-    // --------------------
-    // RESPONSIVE VIEW + TOGGLE
-    // --------------------
+    // ----- View Switcher -----
     const body = document.body;
     const switchBtn = document.getElementById("view-switch");
 
@@ -119,15 +88,12 @@
         else body.classList.remove("mobile-view");
     }
 
-    if(switchBtn) {
-        switchBtn.addEventListener("click", () => {
-            body.classList.toggle("mobile-view");
-        });
-    }
+    // Button toggle
+    switchBtn.addEventListener("click", () => {
+        body.classList.toggle("mobile-view");
+    });
 
-    // --------------------
-    // INITIALIZATION
-    // --------------------
+    // Detect on resize & load
     window.addEventListener("resize", detectView);
     window.addEventListener("load", () => {
         detectView();
