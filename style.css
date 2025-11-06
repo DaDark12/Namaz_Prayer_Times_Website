@@ -1,86 +1,122 @@
-/* style.css — premium 3D look, tilt, compact & accessible */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap');
-
-:root{
-  --bg1:#060016; --bg2:#220034;
-  --glass: rgba(255,255,255,0.06);
-  --muted: rgba(230,230,245,0.72);
-  --accent-1:#ff6ec7; --accent-2:#9b4dff;
-  --radius:16px; --easing:cubic-bezier(.16,.84,.32,1);
+/* ===================== */
+/* GENERAL SITE STYLING  */
+/* ===================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #fefefe, #ddd);
+    color: #222;
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
 
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#fff}
-canvas#bgCanvas{position:fixed;inset:0;z-index:0;display:block}
+header {
+    padding: 20px 0;
+    background: #b30000;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
 
-/* wrapper */
-.wrap{position:relative;z-index:2;max-width:1100px;margin:36px auto;padding:20px;width:94%}
+h1, h2 {
+    margin: 10px 0;
+}
 
-/* brand */
-.brand{display:flex;gap:14px;align-items:center;margin-bottom:14px}
-.logo{font-size:34px;filter:drop-shadow(0 6px 18px rgba(155,77,255,0.18))}
-.brand h1{margin:0;font-weight:800;font-size:20px}
-.tagline{margin:0;color:var(--muted);font-size:13px}
+/* ===================== */
+/* PRAYER TIMES SECTION  */
+/* ===================== */
+.prayer-times {
+    margin: 20px auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
 
-/* panel */
-.panel{padding:18px;border-radius:20px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));box-shadow:0 16px 60px rgba(3,2,10,0.6);backdrop-filter: blur(12px);transition:transform .45s var(--easing)}
-.panel:hover{transform:translateY(-6px)}
+#prayer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
-/* top row */
-.top-row{display:flex;gap:12px;align-items:center;margin-bottom:12px}
-.searchWrap{position:relative;flex:1}
-.searchWrap input{width:100%;padding:12px 14px;border-radius:12px;border:none;background:linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));outline:none;font-weight:600;color:#0b0020}
-.searchWrap input::placeholder{color:rgba(11,0,32,0.6)}
-.results{position:absolute;left:0;right:0;top:48px;z-index:60;max-height:300px;overflow:auto;border-radius:12px;padding:6px;background:linear-gradient(180deg, rgba(12,6,22,0.95), rgba(10,5,18,0.9));box-shadow:0 20px 70px rgba(2,2,8,0.7);border:1px solid rgba(255,255,255,0.03)}
-.results.hidden{display:none}
-.results li{padding:10px;border-radius:8px;margin:4px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
-.results li:hover{background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent)}
-.results .city-name{font-weight:700}
-.results .country{color:var(--muted);font-size:13px}
+#prayer-list li {
+    font-size: 1.2em;
+    margin: 5px 0;
+}
 
-/* clock box */
-.timeBox{min-width:150px;text-align:center;padding:6px 10px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent)}
-.clock{font-weight:800;font-size:18px}
-.tz{font-size:12px;color:var(--muted)}
+/* ===================== */
+/* QIBLA FINDER SECTION  */
+/* ===================== */
+.qibla-section {
+    margin: 30px auto;
+}
 
-/* meta */
-.meta{color:var(--muted);font-size:13px;margin-bottom:10px}
+.qibla-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+}
 
-/* grid */
-.grid{display:grid;grid-template-columns:repeat(3,minmax(180px,1fr));gap:14px;margin-bottom:12px;transform-style:preserve-3d;perspective:1000px}
-@media (max-width:880px){ .grid{grid-template-columns:repeat(2,1fr)} }
+#qibla-compass {
+    width: 150px;
+    height: 150px;
+    border: 5px solid #222;
+    border-radius: 50%;
+    position: relative;
+    background: radial-gradient(circle at center, #fff, #ccc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 1s ease-out;
+}
 
-/* card */
-.card{padding:14px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));transition:transform .18s ease, box-shadow .18s ease;box-shadow:0 8px 26px rgba(2,2,8,0.45)}
-.card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 26px 80px rgba(2,2,8,0.6)}
-.label{font-weight:700;color:var(--muted);font-size:13px}
-.time{font-size:20px;font-weight:800;margin-top:6px;color:#ffe8ff}
-.sub{font-size:12px;color:rgba(230,230,245,0.65);margin-top:6px}
+#qibla-needle {
+    width: 4px;
+    height: 70px;
+    background: #b30000;
+    position: absolute;
+    top: 15px;
+    transform-origin: bottom center;
+    border-radius: 2px;
+    box-shadow: 0 0 8px rgba(179,0,0,0.8);
+}
 
-/* compass card */
-.card-compass{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px}
-.compass-wrap{display:flex;flex-direction:column;align-items:center;gap:8px}
-.compass{width:110px;height:110px;border-radius:999px;display:flex;align-items:center;justify-content:center;position:relative;backdrop-filter: blur(6px)}
-.compass-face{width:100%;height:100%}
-.compass-ring{fill:none;stroke:rgba(255,255,255,0.06);stroke-width:2}
-#needle{transition: transform 450ms cubic-bezier(.16,.84,.32,1); transform-origin: 50% 50%}
-.qibla-deg{font-weight:700;color:#ffdff7}
+#qibla-angle {
+    margin-top: 15px;
+    font-size: 1.3em;
+    font-weight: bold;
+}
 
-/* next & updated */
-.next-row{display:flex;justify-content:space-between;align-items:center;margin-top:6px;gap:12px}
-.next{font-weight:800;color:#ffdeff}
-.updated{color:var(--muted);font-size:13px}
+/* ===================== */
+/* VIEW SWITCH BUTTON     */
+/* ===================== */
+#view-switch {
+    margin-top: 20px;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid #222;
+    background-color: #f0f0f0;
+    transition: all 0.3s;
+}
 
-/* controls */
-.controls{display:flex;gap:10px;align-items:center;margin-top:12px}
-select, input#apiKey{padding:10px;border-radius:10px;border:none;background:linear-gradient(180deg, rgba(255,255,255,0.04), transparent);outline:none;color:#0b0020;font-weight:600}
-.btn-ghost{padding:9px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);cursor:pointer}
+#view-switch:hover {
+    background-color: #ddd;
+}
 
-/* footer */
-.footer{text-align:center;color:var(--muted);margin-top:16px;font-size:13px}
+/* ===================== */
+/* FOOTER STYLING         */
+/* ===================== */
+footer {
+    padding: 15px 0;
+    background: #222;
+    color: #fff;
+}
 
-/* tilt hint */
-[data-tilt] .card { transform-style: preserve-3d; will-change: transform; }
-
-/* accessibility helper */
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* ===================== */
+/* RESPONSIVE MOBILE VIEW */
+/* ===================== */
+.mobile-view #qibla-compass { width: 120px; height: 120px; }
