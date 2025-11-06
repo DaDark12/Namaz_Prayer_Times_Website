@@ -1,36 +1,80 @@
-<!DOCTYPE html>
+<!-- index.html -->
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shia Namaz Times</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shia Namaz Times — Cinema</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="background"></div>
+  <!-- animated canvas background -->
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
 
-  <div class="app glass">
-    <h1 class="title">🕌 Shia Namaz Times</h1>
+  <main class="wrap">
+    <header class="brand">
+      <div class="logo">🕌</div>
+      <div>
+        <h1>Shia Namaz Times</h1>
+        <p class="tagline">Jafari timings • cinematic UI • Next prayer live</p>
+      </div>
+    </header>
 
-    <div class="search-bar">
-      <input type="text" id="city" placeholder="Enter your city..." />
-      <button id="getTimes">Find</button>
-    </div>
+    <section class="panel glass">
+      <div class="search-row">
+        <input id="cityInput" placeholder="Search city — e.g. Muscat, Tehran, Najaf" autocomplete="off" />
+        <button id="getBtn" class="btn-primary">Get Times</button>
+      </div>
 
-    <div class="times" id="results">
-      <div class="card"><span>Fajr</span><p id="fajr">--:--</p></div>
-      <div class="card"><span>Sunrise</span><p id="sunrise">--:--</p></div>
-      <div class="card"><span>Dhuhrain</span><p id="dhuhrain">--:--</p></div>
-      <div class="card"><span>Sunset</span><p id="sunset">--:--</p></div>
-      <div class="card"><span>Maghribain</span><p id="maghribain">--:--</p></div>
-    </div>
+      <div class="meta" id="meta">No city selected • paste exact city name for accuracy</div>
 
-    <div class="next">
-      <p id="nextPrayer">Next prayer: --</p>
-    </div>
-  </div>
+      <div class="grid" id="cards">
+        <div class="card">
+          <div class="label">Fajr</div>
+          <div class="time" id="fajr">--:--</div>
+          <div class="sub" id="fajr-sub"></div>
+        </div>
+        <div class="card">
+          <div class="label">Sunrise</div>
+          <div class="time" id="sunrise">--:--</div>
+          <div class="sub" id="sunrise-sub"></div>
+        </div>
+        <div class="card">
+          <div class="label">Dhuhrain</div>
+          <div class="time" id="dhuhrain">--:--</div>
+          <div class="sub" id="dhuhrain-sub"></div>
+        </div>
+        <div class="card">
+          <div class="label">Sunset</div>
+          <div class="time" id="sunset">--:--</div>
+          <div class="sub" id="sunset-sub"></div>
+        </div>
+        <div class="card">
+          <div class="label">Maghribain</div>
+          <div class="time" id="maghribain">--:--</div>
+          <div class="sub" id="maghribain-sub"></div>
+        </div>
+      </div>
 
-  <script src="prayers.js"></script>
-  <script src="app.js"></script>
+      <div class="next-row">
+        <div id="nextPrayer" class="next">Next prayer: —</div>
+        <div id="updated" class="updated">Last updated: —</div>
+      </div>
+
+      <div class="controls">
+        <select id="providerSelect" title="Choose API provider">
+          <option value="aladhan">Aladhan (no key)</option>
+          <option value="islamicapi">IslamicAPI (Jafari if available)</option>
+        </select>
+        <input id="apiKey" placeholder="Optional API key (IslamicAPI)" />
+        <button id="clearBtn" class="btn-ghost">Clear</button>
+      </div>
+    </section>
+
+    <footer class="footer">Static site • GitHub Pages ready • Built by Ali — Cinema mode</footer>
+  </main>
+
+  <script src="background.js" defer></script>
+  <script src="app.js" defer></script>
 </body>
 </html>
