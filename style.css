@@ -1,0 +1,55 @@
+:root{
+  --bg:#06060a;
+  --card:#0d0d12;
+  --muted:#9aa0a6;
+  --accent-1:#b21f2d;
+  --accent-2:#6b21b8;
+  --glass: rgba(255,255,255,0.04);
+  --radius:14px;
+  --easing:cubic-bezier(.16,.84,.32,1);
+  --max-w:1100px;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#05050a,#0b0b10);color:#eaf0ff;-webkit-font-smoothing:antialiased}
+.container{max-width:var(--max-w);margin:28px auto;padding:24px}
+.header{display:flex;flex-direction:column;gap:6px}
+.header h1{font-size:28px;letter-spacing:1px;margin:0;font-weight:800}
+.micro{color:var(--accent-1);font-weight:700;font-size:14px}
+.subtitle{color:var(--muted);margin:0;font-size:13px}
+
+.controls{display:flex;justify-content:space-between;gap:18px;margin-top:18px;align-items:flex-start}
+.left{flex:1;display:flex;flex-direction:column;gap:10px;min-width:320px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field input{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:10px;color:inherit}
+.row{display:flex;gap:10px;align-items:center}
+.row.small{font-size:13px;color:var(--muted)}
+.field-inline{display:flex;gap:8px;align-items:center;color:var(--muted)}
+
+select{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:10px;color:inherit}
+.hidden{display:none}
+.right{width:260px;min-height:120px;padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+.status .location,.status .date{color:var(--muted);font-size:13px;margin-bottom:8px}
+
+.btn{padding:10px 12px;border-radius:10px;border:0;background:transparent;color:inherit;cursor:pointer;font-weight:700}
+.btn.primary{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:white;box-shadow:0 8px 30px rgba(107,33,184,0.18)}
+.btn.ghost{border:1px solid rgba(255,255,255,0.06)}
+
+.times{display:grid;grid-template-columns:360px 1fr;gap:18px;margin-top:22px;align-items:start}
+.card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.6)}
+.big{display:flex;flex-direction:column;align-items:center;gap:12px;justify-content:center;height:240px}
+.clock{font-size:48px;font-weight:800;letter-spacing:2px}
+.nextPrayer{color:var(--muted);font-weight:600}
+
+.list{min-height:240px}
+.prayer-ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.prayer-ul li{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:8px;background:linear-gradient(90deg,rgba(255,255,255,0.01),transparent)}
+.prayer-time{font-weight:800}
+.prayer-name{color:var(--muted);font-weight:700}
+
+.loading{color:var(--muted);font-style:italic}
+
+.foot{margin-top:20px;color:var(--muted);font-size:13px;text-align:center}
+@media (max-width:880px){
+  .times{grid-template-columns:1fr;align-items:stretch}
+  .right{width:100%}
+}
