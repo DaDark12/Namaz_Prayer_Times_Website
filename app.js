@@ -1,15 +1,14 @@
 // =====================
-// APP.JS - GITHUB SAFE
+// APP.JS - FIXED FOR GITHUB
 // =====================
 
-// Wait until DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
 
     // --------------------
-    // PRAYER TIMES (example)
+    // PRAYER TIMES UPDATE
     // --------------------
     function updatePrayerTimes() {
-        // Example static times, replace with your calculation
+        // Replace with your original calculation or static times
         const times = {
             fajr: "05:00",
             dhuhr: "12:30",
@@ -17,13 +16,16 @@ document.addEventListener("DOMContentLoaded", () => {
             maghrib: "18:30",
             isha: "20:00"
         };
-        document.querySelector("#prayer-list").innerHTML = `
-            <li>Fajr: ${times.fajr}</li>
-            <li>Dhuhr: ${times.dhuhr}</li>
-            <li>Asr: ${times.asr}</li>
-            <li>Maghrib: ${times.maghrib}</li>
-            <li>Isha: ${times.isha}</li>
-        `;
+        const prayerList = document.querySelector("#prayer-list");
+        if(prayerList) {
+            prayerList.innerHTML = `
+                <li>Fajr: ${times.fajr}</li>
+                <li>Dhuhr: ${times.dhuhr}</li>
+                <li>Asr: ${times.asr}</li>
+                <li>Maghrib: ${times.maghrib}</li>
+                <li>Isha: ${times.isha}</li>
+            `;
+        }
     }
 
     // --------------------
@@ -67,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --------------------
-    // RESPONSIVE VIEW DETECTION
+    // RESPONSIVE VIEW TOGGLE
     // --------------------
     const body = document.body;
     const switchBtn = document.getElementById("view-switch");
@@ -84,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --------------------
-    // INITIALIZE
+    // INITIALIZATION
     // --------------------
     detectView();
     updatePrayerTimes();
