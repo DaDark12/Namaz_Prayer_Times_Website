@@ -1,43 +1,105 @@
-<!DOCTYPE html>
+<!-- index.html -->
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3D Prayer Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>3D Prayer Dashboard — Qibla & Tilt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <canvas id="bgCanvas"></canvas>
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
 
-  <div class="container">
-    <h1>🌙 3D Prayer Dashboard</h1>
+  <main class="wrap" role="main">
+    <header class="brand">
+      <div class="logo">🕌</div>
+      <div>
+        <h1>Shia Namaz Times</h1>
+        <p class="tagline">Jafari timings • Qibla compass • interactive 3D & tilt</p>
+      </div>
+    </header>
 
-    <div class="time-panel">
-      <div class="clock-ring"></div>
-      <h2 id="currentTime">--:--:--</h2>
-      <p id="currentLocation">Local Time</p>
-    </div>
+    <section class="panel glass">
+      <div class="top-row">
+        <div class="searchWrap">
+          <input id="cityInput" placeholder="Search city (type & Enter) — e.g. Muscat" autocomplete="off" />
+          <ul id="cityResults" class="results hidden" role="listbox" aria-label="Search results"></ul>
+        </div>
 
-    <div class="dropdown">
-      <input type="text" id="cityInput" placeholder="Search for a city...">
-      <ul id="cityList"></ul>
-    </div>
+        <div class="timeBox">
+          <div id="clock" class="clock">--:--:--</div>
+          <div id="clockTz" class="tz">local</div>
+        </div>
+      </div>
 
-    <div class="prayer-times">
-      <div class="prayer-card" id="fajr"></div>
-      <div class="prayer-card" id="sunrise"></div>
-      <div class="prayer-card" id="dhuhrain"></div>
-      <div class="prayer-card" id="sunset"></div>
-      <div class="prayer-card" id="maghribain"></div>
-    </div>
+      <div class="meta" id="meta">No city selected • search worldwide</div>
 
-    <div class="next-prayer">
-      <p id="nextPrayer">Next prayer: --</p>
-    </div>
-  </div>
+      <div class="grid" id="cards" data-tilt>
+        <div class="card" id="card-fajr">
+          <div class="label">Fajr</div>
+          <div class="time" id="fajr">--:--</div>
+        </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-  <script src="script.js"></script>
+        <div class="card" id="card-sunrise">
+          <div class="label">Sunrise</div>
+          <div class="time" id="sunrise">--:--</div>
+        </div>
+
+        <div class="card" id="card-dhuhrain">
+          <div class="label">Dhuhrain</div>
+          <div class="time" id="dhuhrain">--:--</div>
+          <div class="sub">Dhuhr • Asr</div>
+        </div>
+
+        <div class="card" id="card-sunset">
+          <div class="label">Sunset</div>
+          <div class="time" id="sunset">--:--</div>
+        </div>
+
+        <div class="card" id="card-maghribain">
+          <div class="label">Maghribain</div>
+          <div class="time" id="maghribain">--:--</div>
+          <div class="sub">Maghrib • Isha</div>
+        </div>
+
+        <div class="card card-compass" id="card-qibla">
+          <div class="label">Qibla</div>
+          <div class="compass-wrap">
+            <div id="compass" class="compass">
+              <svg viewBox="0 0 100 100" class="compass-face" aria-hidden="true">
+                <circle cx="50" cy="50" r="46" class="compass-ring"></circle>
+                <g id="needle" transform="translate(50,50)">
+                  <path d="M0,-34 L5,6 L0,0 L-5,6 Z" fill="#ffdde9"></path>
+                </g>
+              </svg>
+            </div>
+            <div id="qiblaDeg" class="qibla-deg">—°</div>
+          </div>
+          <div class="sub" id="qiblaSub">Select a city to compute</div>
+        </div>
+      </div>
+
+      <div class="next-row">
+        <div id="nextPrayer" class="next">Next prayer: —</div>
+        <div id="updated" class="updated">Last updated: —</div>
+      </div>
+
+      <div class="controls">
+        <select id="providerSelect" title="API provider">
+          <option value="aladhan">Aladhan (no key)</option>
+          <option value="islamicapi">IslamicAPI (optional key)</option>
+        </select>
+        <input id="apiKey" placeholder="Optional API key (IslamicAPI)" />
+        <button id="clearBtn" class="btn-ghost">Clear</button>
+      </div>
+    </section>
+
+    <footer class="footer">Static site • GitHub Pages ready • Built by Ali — Cinema mode</footer>
+  </main>
+
+  <script src="background.js" defer></script>
+  <script src="utils.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
