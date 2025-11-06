@@ -1,25 +1,15 @@
-/* style.css */
-/* Liquid glass, dimmed dropdown, cinematic vibe */
+/* style.css - liquid glass, dimmed dropdown, cinematic UI */
 
 :root{
-  --bg1:#05050a;
-  --bg2:#0b0b10;
-  --card:#0e1116;
-  --muted:#9aa0a6;
-  --accent-1:#b21f2d;
-  --accent-2:#6b21b8;
-  --glass: rgba(255,255,255,0.04);
-  --glass-strong: rgba(255,255,255,0.02);
-  --radius:14px;
-  --easing:cubic-bezier(.16,.84,.32,1);
-  --max-w:1100px;
+  --bg1:#05050a; --bg2:#0b0b10; --card:#0e1116;
+  --muted:#9aa0a6; --accent-1:#b21f2d; --accent-2:#6b21b8;
+  --glass: rgba(255,255,255,0.04); --radius:12px; --max-w:1100px;
 }
-
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#eaf0ff;-webkit-font-smoothing:antialiased}
 .container{max-width:var(--max-w);margin:28px auto;padding:24px}
 .header{display:flex;flex-direction:column;gap:6px}
-.header h1{font-size:28px;letter-spacing:1px;margin:0;font-weight:800}
+.header h1{font-size:28px;margin:0;font-weight:800}
 .micro{color:var(--accent-1);font-weight:700;font-size:14px}
 .subtitle{color:var(--muted);margin:0;font-size:13px}
 
@@ -36,14 +26,13 @@ select{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);b
 
 /* Searchable dropdown (liquid glass card) */
 .searchWrap{position:relative;flex:1}
-#citySearch{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);backdrop-filter:blur(8px)}
-.results{position:absolute;left:0;right:0;top:46px;z-index:60;max-height:320px;overflow:auto;border-radius:12px;padding:6px;background:linear-gradient(180deg, rgba(8,8,12,0.7), rgba(8,8,12,0.6));box-shadow:0 20px 70px rgba(2,2,8,0.7);border:1px solid rgba(255,255,255,0.03)}
+#citySearch{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);backdrop-filter:blur(8px);color:inherit}
+.results{position:absolute;left:0;right:0;top:46px;z-index:60;max-height:320px;overflow:auto;border-radius:12px;padding:6px;background:linear-gradient(180deg, rgba(8,8,12,0.75), rgba(8,8,12,0.65));box-shadow:0 20px 70px rgba(2,2,8,0.7);border:1px solid rgba(255,255,255,0.03)}
 .results li{padding:10px;border-radius:8px;margin:4px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
 .results li:hover{background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent)}
 .results .city-name{font-weight:700}
 .results .country{color:var(--muted);font-size:13px}
 
-/* Hidden helper */
 .hidden{display:none}
 
 /* Right panel */
@@ -69,7 +58,6 @@ select{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);b
 .prayer-name{color:var(--muted);font-weight:700}
 
 .loading{color:var(--muted);font-style:italic}
-
 .foot{margin-top:20px;color:var(--muted);font-size:13px;text-align:center}
 
 @media (max-width:880px){
