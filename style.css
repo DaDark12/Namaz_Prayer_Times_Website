@@ -1,129 +1,78 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+/* style.css — cinematic, glassmorphism, responsive, subtle motion */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800&family=Montserrat:wght@600&display=swap');
 
-body {
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: radial-gradient(circle at top left, #1b002a, #32004e, #6a11cb);
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  overflow: hidden;
+:root{
+  --bg-1:#0b0320;
+  --bg-2:#1b0033;
+  --glass-bg: rgba(255,255,255,0.06);
+  --glass-strong: rgba(255,255,255,0.12);
+  --muted: rgba(230,230,245,0.7);
+  --accent-1: #ff6ec7;
+  --accent-2: #9b4dff;
+  --radius:18px;
+  --max-w:1100px;
+  --easing: cubic-bezier(.16,.84,.32,1);
 }
 
-.background {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: url('assets/bg.svg') no-repeat center/cover;
-  opacity: 0.08;
-  z-index: 0;
+/* page reset */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#fff;overflow:auto}
+canvas#bgCanvas{position:fixed;inset:0;z-index:0;display:block}
+
+/* main wrapper */
+.wrap{position:relative;z-index:2;max-width:var(--max-w);margin:40px auto;padding:28px;width:92%}
+
+/* brand */
+.brand{display:flex;gap:16px;align-items:center;margin-bottom:18px}
+.logo{font-size:36px;filter:drop-shadow(0 6px 18px rgba(155,77,255,0.18))}
+.brand h1{margin:0;font-weight:800;font-family:Montserrat,Inter;font-size:20px;letter-spacing:0.6px}
+.tagline{margin:0;color:var(--muted);font-size:13px}
+
+/* panel */
+.panel{padding:20px;border-radius:24px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));box-shadow:0 14px 50px rgba(3,2,10,0.6);backdrop-filter: blur(12px);transition:transform .45s var(--easing)}
+.panel:hover{transform:translateY(-6px)}
+
+/* search row */
+.search-row{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.search-row input{flex:1;padding:12px 14px;border-radius:12px;border:none;background:linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));outline:none;font-weight:600;color:#0b0020}
+.search-row input::placeholder{color:rgba(11,0,32,0.6)}
+.btn-primary{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));border:none;padding:10px 14px;border-radius:12px;color:white;font-weight:700;cursor:pointer;box-shadow:0 10px 30px rgba(155,77,255,0.12)}
+.btn-primary:active{transform:translateY(1px)}
+
+/* meta */
+.meta{color:var(--muted);font-size:13px;margin-bottom:12px}
+
+/* grid of cards */
+.grid{display:grid;grid-template-columns:repeat(2,minmax(160px,1fr));gap:14px;margin-bottom:16px}
+.card{padding:14px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));transition:all .28s var(--easing);box-shadow:0 8px 26px rgba(2,2,8,0.5)}
+.card:hover{transform:translateY(-6px);box-shadow:0 26px 80px rgba(2,2,8,0.6)}
+.label{font-weight:700;color:var(--muted);font-size:13px}
+.time{font-size:20px;font-weight:800;margin-top:6px;color:#ffe8ff}
+.sub{font-size:12px;color:rgba(230,230,245,0.65);margin-top:6px}
+
+/* next & updated */
+.next-row{display:flex;justify-content:space-between;align-items:center;margin-top:6px;gap:12px}
+.next{font-weight:800;color:#ffdeff}
+.updated{color:var(--muted);font-size:13px}
+
+/* controls */
+.controls{display:flex;gap:10px;align-items:center;margin-top:14px}
+select, input#apiKey{padding:10px;border-radius:10px;border:none;background:linear-gradient(180deg, rgba(255,255,255,0.04), transparent);outline:none;color:#0b0020;font-weight:600}
+.btn-ghost{padding:9px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);cursor:pointer}
+
+/* footer */
+.footer{text-align:center;color:var(--muted);margin-top:16px;font-size:13px}
+
+/* responsive */
+@media (max-width:760px){
+  .grid{grid-template-columns:1fr;gap:12px}
+  .search-row{flex-direction:column;align-items:stretch}
+  .controls{flex-direction:column;align-items:stretch}
 }
 
-.app {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  padding: 40px;
-  border-radius: 25px;
-  backdrop-filter: blur(25px);
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
-  animation: fadeIn 1s ease-in-out;
-}
-
-.title {
-  font-size: 1.8em;
-  margin-bottom: 15px;
-  color: #ffdcff;
-  text-shadow: 0 0 15px rgba(255, 220, 255, 0.6);
-}
-
-.search-bar {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 25px;
-}
-
-input {
-  background: rgba(255, 255, 255, 0.3);
-  border: none;
-  border-radius: 10px;
-  padding: 12px;
-  width: 60%;
-  color: #000;
-  font-weight: 600;
-  outline: none;
-  transition: 0.3s;
-}
-
-input:focus {
-  background: rgba(255, 255, 255, 0.5);
-}
-
-button {
-  border: none;
-  border-radius: 10px;
-  padding: 12px 15px;
-  font-weight: 600;
-  cursor: pointer;
-  color: #fff;
-  background: linear-gradient(135deg, #ff6ec7, #9b4dff);
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(255, 110, 199, 0.5);
-}
-
-.times {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 15px;
-  padding: 15px 0;
-  transition: 0.4s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.25);
-}
-
-.card span {
-  display: block;
-  font-weight: 600;
-  font-size: 1.1em;
-}
-
-.card p {
-  margin: 5px 0 0;
-  font-size: 1.2em;
-  font-weight: 500;
-  color: #ffe8ff;
-}
-
-.next {
-  font-size: 1.1em;
-  color: #ffd6ff;
-  text-shadow: 0 0 5px rgba(255,255,255,0.4);
-  animation: fadeUp 1.2s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* little motion */
+@keyframes pulse {
+  0%{box-shadow:0 6px 30px rgba(155,77,255,0.08)}
+  50%{box-shadow:0 16px 60px rgba(155,77,255,0.12)}
+  100%{box-shadow:0 6px 30px rgba(155,77,255,0.08)}
 }
