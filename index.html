@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Namaz Times — Shia (Cinema)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>Namaz Times <span class="micro">— Shia (Jafari)</span></h1>
+      <p class="subtitle">Auto geo + dropdown fallback • cinematic UI • connect to IslamicAPI (method=0)</p>
+    </header>
+
+    <section class="controls">
+      <div class="left">
+        <label class="field">
+          <span>API Key (optional)</span>
+          <input id="apiKey" placeholder="Paste IslamicAPI key (or leave blank)" />
+        </label>
+
+        <div class="row">
+          <button id="geoBtn" class="btn">Auto-detect location</button>
+          <select id="citySelect" aria-label="Choose city">
+            <option value="">— Choose a city —</option>
+            <option data-lat="23.5880" data-lon="58.3829">Muscat, Oman</option>
+            <option data-lat="35.6892" data-lon="51.3890">Tehran, Iran</option>
+            <option data-lat="31.5204" data-lon="74.3587">Lahore, Pakistan</option>
+            <option data-lat="31.7683" data-lon="35.2137">Jerusalem</option>
+            <option data-lat="29.9511" data-lon="31.2060">Cairo, Egypt</option>
+            <option data-lat="34.0160" data-lon="71.5785">Peshawar, Pakistan</option>
+            <option data-lat="34.0167" data-lon="71.5333">Kabul, Afghanistan</option>
+            <option data-lat="32.5364" data-lon="44.4200">Karbala, Iraq</option>
+            <option data-lat="34.3200" data-lon="44.3900">Najaf, Iraq</option>
+            <option value="custom">Custom lat/lon →</option>
+          </select>
+        </div>
+
+        <div id="customCoords" class="hidden">
+          <input id="lat" placeholder="Latitude (e.g. 23.5880)" />
+          <input id="lon" placeholder="Longitude (e.g. 58.3829)" />
+        </div>
+
+        <div class="row small">
+          <label class="field-inline"><input type="radio" name="provider" value="islamicapi" checked> IslamicAPI (Jafari)</label>
+          <label class="field-inline"><input type="radio" name="provider" value="ummahapi"> UmmahAPI (alt)</label>
+        </div>
+
+        <div class="row">
+          <button id="fetchBtn" class="btn primary">Get Namaz Times</button>
+          <button id="refreshBtn" class="btn ghost">Refresh</button>
+        </div>
+      </div>
+
+      <div class="right status">
+        <div id="locationReadout" class="location">Location: —</div>
+        <div id="dateReadout" class="date">Date: —</div>
+      </div>
+    </section>
+
+    <section id="times" class="times">
+      <div class="card big">
+        <div class="clock" id="clock">--:--</div>
+        <div class="nextPrayer" id="nextPrayer">Next: —</div>
+      </div>
+
+      <div class="card list" id="timesList">
+        <div class="loading" id="loader">Waiting for request…</div>
+        <ul id="prayerUl" class="prayer-ul"></ul>
+      </div>
+    </section>
+
+    <footer class="foot">Built for the challenge — cinematic, fast, production-ready.</footer>
+  </main>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
