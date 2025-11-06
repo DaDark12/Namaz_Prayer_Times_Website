@@ -1,12 +1,47 @@
-/* ===================== */
-/* ORIGINAL STYLES */
-/* ===================== */
-/* Everything from your original style.css remains exactly as it was */
-/* All layout, colors, animations, etc. are untouched */
+/* General Body & Header */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #fefefe, #ddd);
+    color: #222;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
 
-/* ===================== */
-/* QIBLA FINDER STYLES - ADDED ONLY */
-/* ===================== */
+header {
+    padding: 20px 0;
+    background: #b30000;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    margin: 10px 0;
+}
+
+/* Prayer Times */
+.prayer-times {
+    margin: 20px auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+#prayer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#prayer-list li {
+    font-size: 1.2em;
+    margin: 5px 0;
+}
+
+/* Qibla Finder */
 .qibla-section {
     margin: 30px auto;
 }
@@ -25,11 +60,11 @@
     border-radius: 50%;
     position: relative;
     background: radial-gradient(circle at center, #fff, #ccc);
+    transition: transform 1s ease-out;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    transition: transform 1s ease-out;
 }
 
 #qibla-needle {
@@ -40,19 +75,7 @@
     top: 15px;
     transform-origin: bottom center;
     border-radius: 2px;
-    box-shadow: 0 0 12px rgba(179,0,0,0.9);
-    transition: transform 1s ease-out;
-}
-
-.compass-glow {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    background: radial-gradient(circle at center, rgba(255,0,0,0.2), transparent 70%);
-    pointer-events: none;
+    box-shadow: 0 0 8px rgba(179,0,0,0.8);
 }
 
 #qibla-angle {
@@ -61,6 +84,7 @@
     font-weight: bold;
 }
 
+/* View Switch Button */
 #view-switch {
     margin-top: 20px;
     padding: 8px 15px;
@@ -75,28 +99,12 @@
     background-color: #ddd;
 }
 
+/* Footer */
+footer {
+    padding: 15px 0;
+    background: #222;
+    color: #fff;
+}
+
+/* Responsive adjustments */
 .mobile-view #qibla-compass { width: 120px; height: 120px; }
-.mobile-view #qibla-needle { height: 55px; }
-
-/* Additional glow + depth effects */
-#qibla-compass::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
-    top: 0;
-    left: 0;
-}
-
-#qibla-needle::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    top: 0;
-    left: 0;
-    box-shadow: 0 0 8px rgba(255,0,0,0.8);
-}
