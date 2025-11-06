@@ -73,6 +73,7 @@ h1, h2 {
     transition: transform 1s ease-out;
 }
 
+/* Compass needle */
 #qibla-needle {
     width: 4px;
     height: 70px;
@@ -81,7 +82,20 @@ h1, h2 {
     top: 15px;
     transform-origin: bottom center;
     border-radius: 2px;
-    box-shadow: 0 0 8px rgba(179,0,0,0.8);
+    box-shadow: 0 0 12px rgba(179,0,0,0.9);
+    transition: transform 1s ease-out;
+}
+
+/* Needle reflection / glow */
+.compass-glow {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    background: radial-gradient(circle at center, rgba(255,0,0,0.2), transparent 70%);
+    pointer-events: none;
 }
 
 #qibla-angle {
@@ -120,3 +134,4 @@ footer {
 /* RESPONSIVE MOBILE VIEW */
 /* ===================== */
 .mobile-view #qibla-compass { width: 120px; height: 120px; }
+.mobile-view #qibla-needle { height: 55px; }
