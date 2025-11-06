@@ -1,16 +1,52 @@
 /* ===================== */
-/* ORIGINAL SITE STYLES  */
+/* GENERAL SITE STYLING  */
 /* ===================== */
-/* EVERYTHING from your original style.css stays intact.
-   (I’m not deleting a single line from your original design)
-   — all your layouts, colors, animations, headers, sections, etc. */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #fefefe, #ddd);
+    color: #222;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
 
-/* --- Example placeholder for your original styles --- */
-/* body, header, footer, prayer times, buttons, etc. */
-/* <all original CSS goes here> */
+header {
+    padding: 20px 0;
+    background: #b30000;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    margin: 10px 0;
+}
 
 /* ===================== */
-/* QIBLA FINDER STYLING  */
+/* PRAYER TIMES SECTION  */
+/* ===================== */
+.prayer-times {
+    margin: 20px auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+#prayer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#prayer-list li {
+    font-size: 1.2em;
+    margin: 5px 0;
+}
+
+/* ===================== */
+/* QIBLA FINDER SECTION  */
 /* ===================== */
 .qibla-section {
     margin: 30px auto;
@@ -23,7 +59,6 @@
     margin: 20px auto;
 }
 
-/* Compass circle */
 #qibla-compass {
     width: 150px;
     height: 150px;
@@ -51,7 +86,7 @@
     transition: transform 1s ease-out;
 }
 
-/* Needle glow */
+/* Needle glow effect */
 .compass-glow {
     width: 160px;
     height: 160px;
@@ -63,14 +98,15 @@
     pointer-events: none;
 }
 
-/* Angle display */
 #qibla-angle {
     margin-top: 15px;
     font-size: 1.3em;
     font-weight: bold;
 }
 
-/* View toggle button */
+/* ===================== */
+/* VIEW SWITCH BUTTON     */
+/* ===================== */
 #view-switch {
     margin-top: 20px;
     padding: 8px 15px;
@@ -86,40 +122,16 @@
 }
 
 /* ===================== */
+/* FOOTER STYLING         */
+/* ===================== */
+footer {
+    padding: 15px 0;
+    background: #222;
+    color: #fff;
+}
+
+/* ===================== */
 /* RESPONSIVE MOBILE VIEW */
 /* ===================== */
-.mobile-view #qibla-compass {
-    width: 120px;
-    height: 120px;
-}
-
-.mobile-view #qibla-needle {
-    height: 55px;
-}
-
-/* ===================== */
-/* ADDITIONAL DETAIL EFFECTS FOR MAX DETAIL */
-/* ===================== */
-/* Compass shadow and depth */
-#qibla-compass::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
-    top: 0;
-    left: 0;
-}
-
-/* Smooth glow for needle */
-#qibla-needle::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    top: 0;
-    left: 0;
-    box-shadow: 0 0 8px rgba(255,0,0,0.8);
-}
+.mobile-view #qibla-compass { width: 120px; height: 120px; }
+.mobile-view #qibla-needle { height: 55px; }
