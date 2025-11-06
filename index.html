@@ -1,69 +1,28 @@
-<!-- index.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Namaz Times — Shia (Jafari) — Cinema UI</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shia Namaz Times</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="container">
-    <header class="header">
-      <h1>Namaz Times <span class="micro">— Shia (Jafari)</span></h1>
-      <p class="subtitle">Searchable cities • liquid glass UI • provider fallback (IslamicAPI → Aladhan → offline)</p>
-    </header>
-
-    <section class="controls">
-      <div class="left">
-        <label class="field">
-          <span>Prayer API Key (optional — IslamicAPI)</span>
-          <input id="apiKey" placeholder="Paste IslamicAPI key (optional)" autocomplete="off" />
-        </label>
-
-        <div class="row">
-          <div class="searchWrap">
-            <input id="citySearch" placeholder="Search city — e.g. Muscat, Tehran, Najaf" autocomplete="off" />
-            <ul id="cityResults" class="results hidden" role="listbox" aria-label="Search results"></ul>
-          </div>
-          <select id="presetSelect" aria-label="Quick picks">
-            <option value="">Quick picks</option>
-          </select>
-        </div>
-
-        <div class="row small">
-          <label class="field-inline"><input type="radio" name="provider" value="islamicapi" checked> IslamicAPI (Jafari)</label>
-          <label class="field-inline"><input type="radio" name="provider" value="aladhan"> Aladhan (fallback)</label>
-        </div>
-
-        <div class="row">
-          <button id="fetchBtn" class="btn primary">Get Namaz Times</button>
-          <button id="clearBtn" class="btn ghost">Clear</button>
-        </div>
-      </div>
-
-      <div class="right status">
-        <div id="locationReadout" class="location">Location: —</div>
-        <div id="dateReadout" class="date">Date: —</div>
-        <div id="statusMsg" class="statusMsg">Ready — pick a city and press Get Namaz Times.</div>
-      </div>
-    </section>
-
-    <section id="times" class="times">
-      <div class="card big">
-        <div class="clock" id="clock">--:--</div>
-        <div class="nextPrayer" id="nextPrayer">Next: —</div>
-      </div>
-
-      <div class="card list" id="timesList">
-        <div class="loading" id="loader">Waiting for request…</div>
-        <ul id="prayerUl" class="prayer-ul"></ul>
-      </div>
-    </section>
-
-    <footer class="foot">Built for the challenge — cinematic, fast, production-ready.</footer>
-  </main>
-
-  <script src="app.js" defer></script>
+  <div class="container">
+    <h1>Shia Namaz Times</h1>
+    <div class="dropdown">
+      <input type="text" id="city" placeholder="Search city..." />
+      <button id="getTimes">Get Times</button>
+    </div>
+    <div class="glass" id="results">
+      <p><b>Fajr:</b> <span id="fajr"></span></p>
+      <p><b>Sunrise:</b> <span id="sunrise"></span></p>
+      <p><b>Dhuhrain:</b> <span id="dhuhrain"></span></p>
+      <p><b>Sunset:</b> <span id="sunset"></span></p>
+      <p><b>Maghribain:</b> <span id="maghribain"></span></p>
+      <hr>
+      <p id="nextPrayer"></p>
+    </div>
+  </div>
+  <script src="app.js"></script>
 </body>
 </html>
