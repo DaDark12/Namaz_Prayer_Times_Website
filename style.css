@@ -86,7 +86,7 @@ h1, h2 {
     transition: transform 1s ease-out;
 }
 
-/* Needle reflection / glow */
+/* Needle glow effect */
 .compass-glow {
     width: 160px;
     height: 160px;
