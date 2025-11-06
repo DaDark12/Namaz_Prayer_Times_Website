@@ -39,7 +39,7 @@
                 <div id="qibla-compass">
                     <!-- Needle -->
                     <div id="qibla-needle"></div>
-                    <!-- Compass shadow glow -->
+                    <!-- Glow effect -->
                     <div class="compass-glow"></div>
                 </div>
                 <!-- Angle Display -->
@@ -60,11 +60,11 @@
     <!-- ===================== -->
     <!-- ORIGINAL SCRIPTS -->
     <!-- ===================== -->
-    <!-- Keep your original scripts fully intact -->
+    <!-- Your existing scripts stay here intact -->
     <script src="your-original-scripts.js"></script>
 
     <!-- ===================== -->
-    <!-- QIBLA FINDER SCRIPT -->
+    <!-- QIBLA + RESPONSIVE SCRIPT -->
     <!-- ===================== -->
     <script>
     // --------------------
@@ -92,7 +92,7 @@
     }
 
     // --------------------
-    // UPDATE COMPASS ON PAGE
+    // UPDATE COMPASS
     // --------------------
     function updateQibla() {
         if (navigator.geolocation) {
@@ -114,7 +114,7 @@
     }
 
     // --------------------
-    // RESPONSIVE VIEW DETECTION + TOGGLE
+    // RESPONSIVE VIEW + TOGGLE
     // --------------------
     const body = document.body;
     const switchBtn = document.getElementById("view-switch");
@@ -130,7 +130,9 @@
         });
     }
 
-    // Run on load & resize
+    // --------------------
+    // INIT
+    // --------------------
     window.addEventListener("resize", detectView);
     window.addEventListener("load", () => {
         detectView();
