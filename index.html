@@ -1,105 +1,130 @@
-<!-- index.html -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>3D Prayer Dashboard — Qibla & Tilt</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Namaz Prayer Times</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <canvas id="bgCanvas" aria-hidden="true"></canvas>
-
-  <main class="wrap" role="main">
-    <header class="brand">
-      <div class="logo">🕌</div>
-      <div>
-        <h1>Shia Namaz Times</h1>
-        <p class="tagline">Jafari timings • Qibla compass • interactive 3D & tilt</p>
-      </div>
+    <!-- HEADER -->
+    <header>
+        <h1>Namaz Prayer Times & Qibla Finder</h1>
     </header>
 
-    <section class="panel glass">
-      <div class="top-row">
-        <div class="searchWrap">
-          <input id="cityInput" placeholder="Search city (type & Enter) — e.g. Muscat" autocomplete="off" />
-          <ul id="cityResults" class="results hidden" role="listbox" aria-label="Search results"></ul>
-        </div>
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- PRAYER TIMES SECTION -->
+        <section class="prayer-times">
+            <h2>Prayer Times</h2>
+            <ul id="prayer-list">
+                <li>Fajr: —</li>
+                <li>Dhuhr: —</li>
+                <li>Asr: —</li>
+                <li>Maghrib: —</li>
+                <li>Isha: —</li>
+            </ul>
+        </section>
 
-        <div class="timeBox">
-          <div id="clock" class="clock">--:--:--</div>
-          <div id="clockTz" class="tz">local</div>
-        </div>
-      </div>
-
-      <div class="meta" id="meta">No city selected • search worldwide</div>
-
-      <div class="grid" id="cards" data-tilt>
-        <div class="card" id="card-fajr">
-          <div class="label">Fajr</div>
-          <div class="time" id="fajr">--:--</div>
-        </div>
-
-        <div class="card" id="card-sunrise">
-          <div class="label">Sunrise</div>
-          <div class="time" id="sunrise">--:--</div>
-        </div>
-
-        <div class="card" id="card-dhuhrain">
-          <div class="label">Dhuhrain</div>
-          <div class="time" id="dhuhrain">--:--</div>
-          <div class="sub">Dhuhr • Asr</div>
-        </div>
-
-        <div class="card" id="card-sunset">
-          <div class="label">Sunset</div>
-          <div class="time" id="sunset">--:--</div>
-        </div>
-
-        <div class="card" id="card-maghribain">
-          <div class="label">Maghribain</div>
-          <div class="time" id="maghribain">--:--</div>
-          <div class="sub">Maghrib • Isha</div>
-        </div>
-
-        <div class="card card-compass" id="card-qibla">
-          <div class="label">Qibla</div>
-          <div class="compass-wrap">
-            <div id="compass" class="compass">
-              <svg viewBox="0 0 100 100" class="compass-face" aria-hidden="true">
-                <circle cx="50" cy="50" r="46" class="compass-ring"></circle>
-                <g id="needle" transform="translate(50,50)">
-                  <path d="M0,-34 L5,6 L0,0 L-5,6 Z" fill="#ffdde9"></path>
-                </g>
-              </svg>
+        <!-- QIBLA FINDER SECTION -->
+        <section class="qibla-section">
+            <h2>Qibla Finder</h2>
+            <div class="qibla-container">
+                <!-- Compass Circle -->
+                <div id="qibla-compass">
+                    <!-- Compass Needle -->
+                    <div id="qibla-needle"></div>
+                </div>
+                <!-- Angle Display -->
+                <div id="qibla-angle">—°</div>
+                <!-- View Toggle Button -->
+                <button id="view-switch">Switch View</button>
             </div>
-            <div id="qiblaDeg" class="qibla-deg">—°</div>
-          </div>
-          <div class="sub" id="qiblaSub">Select a city to compute</div>
-        </div>
-      </div>
+        </section>
+    </main>
 
-      <div class="next-row">
-        <div id="nextPrayer" class="next">Next prayer: —</div>
-        <div id="updated" class="updated">Last updated: —</div>
-      </div>
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 Namaz Prayer Times</p>
+    </footer>
 
-      <div class="controls">
-        <select id="providerSelect" title="API provider">
-          <option value="aladhan">Aladhan (no key)</option>
-          <option value="islamicapi">IslamicAPI (optional key)</option>
-        </select>
-        <input id="apiKey" placeholder="Optional API key (IslamicAPI)" />
-        <button id="clearBtn" class="btn-ghost">Clear</button>
-      </div>
-    </section>
+    <!-- ORIGINAL SCRIPTS -->
+    <!-- Make sure all your original scripts stay here -->
+    <script src="your-original-scripts.js"></script>
 
-    <footer class="footer">Static site • GitHub Pages ready • Built by Ali — Cinema mode</footer>
-  </main>
+    <!-- ======================= -->
+    <!-- QIBLA FINDER SCRIPT -->
+    <!-- ======================= -->
+    <script>
+    // --------------------
+    // UTILITY FUNCTIONS
+    // --------------------
+    function toRadians(deg) { return deg * Math.PI / 180; }
+    function toDegrees(rad) { return rad * 180 / Math.PI; }
 
-  <script src="background.js" defer></script>
-  <script src="utils.js" defer></script>
-  <script src="script.js" defer></script>
+    // --------------------
+    // CALCULATE QIBLA DIRECTION
+    // --------------------
+    function calculateQibla(lat, lon) {
+        const kaabaLat = 21.4225;
+        const kaabaLon = 39.8262;
+
+        const phiK = toRadians(kaabaLat);
+        const phiL = toRadians(lat);
+        const deltaLambda = toRadians(kaabaLon - lon);
+
+        const x = Math.sin(deltaLambda);
+        const y = Math.cos(phiL) * Math.tan(phiK) - Math.sin(phiL) * Math.cos(deltaLambda);
+        let qibla = toDegrees(Math.atan2(x, y));
+        if(qibla < 0) qibla += 360;
+        return qibla;
+    }
+
+    // --------------------
+    // UPDATE COMPASS ON PAGE
+    // --------------------
+    function updateQibla() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((pos) => {
+                const lat = pos.coords.latitude;
+                const lon = pos.coords.longitude;
+                const qibla = calculateQibla(lat, lon);
+
+                const needle = document.getElementById("qibla-needle");
+                const angleDisplay = document.getElementById("qibla-angle");
+                if(needle) needle.style.transform = `rotate(${qibla}deg)`;
+                if(angleDisplay) angleDisplay.innerText = Math.round(qibla) + "°";
+            }, () => {
+                alert("Unable to get your location. Please allow location access.");
+            });
+        } else {
+            alert("Geolocation not supported in your browser.");
+        }
+    }
+
+    // --------------------
+    // RESPONSIVE VIEW DETECTION + TOGGLE
+    // --------------------
+    const body = document.body;
+    const switchBtn = document.getElementById("view-switch");
+
+    function detectView() {
+        if(window.innerWidth <= 768) body.classList.add("mobile-view");
+        else body.classList.remove("mobile-view");
+    }
+
+    if(switchBtn) {
+        switchBtn.addEventListener("click", () => {
+            body.classList.toggle("mobile-view");
+        });
+    }
+
+    // Run on load & resize
+    window.addEventListener("resize", detectView);
+    window.addEventListener("load", () => {
+        detectView();
+        updateQibla();
+    });
+    </script>
 </body>
 </html>
