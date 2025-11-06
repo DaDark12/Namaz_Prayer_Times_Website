@@ -1,27 +1,22 @@
 # Namaz Times — Shia (Jafari) — Cinema UI
 
-Fast, cinematic front-end to fetch Shia (Jafari) prayer times for any city.
+Static, GitHub Pages compatible front-end that shows Shia prayer times.
 
 ## Files
 - `index.html`
 - `style.css`
 - `app.js`
 
-## How it works (quick)
-1. Optionally paste your **RapidAPI key** (for GeoDB) into the GeoDB field to enable global searchable cities.
-2. Optionally paste your **IslamicAPI** key (recommended for reliable responses).
-3. Search any city in the search box or use Quick Picks.
-4. Press **Get Namaz Times**.
+## How to deploy (fast)
+1. Create a GitHub repo and push these files to the root (`main` branch).
+2. In repo settings → Pages → select branch `main` and `/ (root)` → Save.
+3. Open the provided pages URL.
 
-## Notes
-- This is a **pure static site** — works on GitHub Pages (no build).
-- If you do not want to expose API keys client-side, use a tiny server proxy (Express) to keep keys secret. I can add that if you want.
-- GeoDB via RapidAPI: if you don't add a key, the search will fall back to a small set of presets.
-- IslamicAPI is used with `method=0` for **Jafari / Shia** timetables.
+## Notes / troubleshooting
+- The client tries **IslamicAPI (Jafari)** first (method=0), then **Aladhan**, then a local fallback. No server required.
+- If a chosen external API is blocked by CORS from GitHub Pages in your region, the app will automatically fall back to an embedded dataset so your UI never breaks.
+- Want me to add a tiny **server proxy (server.js)** to hide API keys and avoid CORS? Say so and I’ll output it next — instant Node/Express, 30s.
 
-## Deployment
-1. Create a GitHub repo, drop these files at the root.
-2. Enable GitHub Pages (branch: `main` / folder: `/root`).
-3. Open the site and paste any keys if needed.
+## Want it extra-safe?
+If you don't want client-side keys visible, add a proxy `server.js` (I can generate it). Otherwise, no keys are required for the fallback flow.
 
-If you want, I can add: `manifest.json`, `favicon.ico`, or a proxy server `server.js` to hide keys. Tell me which and I’ll shotgun it fast.
