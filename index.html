@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prayer Times Dashboard</title>
+  <title>3D Prayer Dashboard</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="background"></div>
+  <canvas id="bgCanvas"></canvas>
 
   <div class="container">
-    <h1>🌙 Prayer Times Dashboard</h1>
+    <h1>🌙 3D Prayer Dashboard</h1>
 
     <div class="time-panel">
+      <div class="clock-ring"></div>
       <h2 id="currentTime">--:--:--</h2>
       <p id="currentLocation">Local Time</p>
     </div>
@@ -36,6 +37,7 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
