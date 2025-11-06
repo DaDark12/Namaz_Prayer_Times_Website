@@ -7,22 +7,30 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Shia Namaz Times</h1>
-    <div class="dropdown">
-      <input type="text" id="city" placeholder="Search city..." />
-      <button id="getTimes">Get Times</button>
+  <div class="background"></div>
+
+  <div class="app glass">
+    <h1 class="title">🕌 Shia Namaz Times</h1>
+
+    <div class="search-bar">
+      <input type="text" id="city" placeholder="Enter your city..." />
+      <button id="getTimes">Find</button>
     </div>
-    <div class="glass" id="results">
-      <p><b>Fajr:</b> <span id="fajr"></span></p>
-      <p><b>Sunrise:</b> <span id="sunrise"></span></p>
-      <p><b>Dhuhrain:</b> <span id="dhuhrain"></span></p>
-      <p><b>Sunset:</b> <span id="sunset"></span></p>
-      <p><b>Maghribain:</b> <span id="maghribain"></span></p>
-      <hr>
-      <p id="nextPrayer"></p>
+
+    <div class="times" id="results">
+      <div class="card"><span>Fajr</span><p id="fajr">--:--</p></div>
+      <div class="card"><span>Sunrise</span><p id="sunrise">--:--</p></div>
+      <div class="card"><span>Dhuhrain</span><p id="dhuhrain">--:--</p></div>
+      <div class="card"><span>Sunset</span><p id="sunset">--:--</p></div>
+      <div class="card"><span>Maghribain</span><p id="maghribain">--:--</p></div>
+    </div>
+
+    <div class="next">
+      <p id="nextPrayer">Next prayer: --</p>
     </div>
   </div>
+
+  <script src="prayers.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
