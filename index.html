@@ -4,26 +4,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Namaz Times — Shia (Searchable Cities, Liquid Glass)</title>
+  <title>Namaz Times — Shia (Jafari) — Cinema UI</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main class="container">
     <header class="header">
       <h1>Namaz Times <span class="micro">— Shia (Jafari)</span></h1>
-      <p class="subtitle">Search any city • liquid-glass UI • paste RapidAPI &amp; Prayer API keys</p>
+      <p class="subtitle">Searchable cities • liquid glass UI • provider fallback (IslamicAPI → Aladhan → offline)</p>
     </header>
 
     <section class="controls">
       <div class="left">
         <label class="field">
-          <span>Prayer API Key (optional)</span>
-          <input id="apiKey" placeholder="Paste IslamicAPI key (or leave blank)" autocomplete="off" />
-        </label>
-
-        <label class="field">
-          <span>GeoDB RapidAPI Key (for global searchable cities)</span>
-          <input id="geoKey" placeholder="Paste your RapidAPI key (optional)" autocomplete="off" />
+          <span>Prayer API Key (optional — IslamicAPI)</span>
+          <input id="apiKey" placeholder="Paste IslamicAPI key (optional)" autocomplete="off" />
         </label>
 
         <div class="row">
@@ -33,18 +28,12 @@
           </div>
           <select id="presetSelect" aria-label="Quick picks">
             <option value="">Quick picks</option>
-            <option data-lat="23.5880" data-lon="58.3829">Muscat, Oman</option>
-            <option data-lat="35.6892" data-lon="51.3890">Tehran, Iran</option>
-            <option data-lat="31.7683" data-lon="35.2137">Jerusalem</option>
-            <option data-lat="31.5204" data-lon="74.3587">Lahore, Pakistan</option>
-            <option data-lat="32.5364" data-lon="44.4200">Karbala, Iraq</option>
-            <option data-lat="34.3200" data-lon="44.3900">Najaf, Iraq</option>
           </select>
         </div>
 
         <div class="row small">
           <label class="field-inline"><input type="radio" name="provider" value="islamicapi" checked> IslamicAPI (Jafari)</label>
-          <label class="field-inline"><input type="radio" name="provider" value="ummahapi"> UmmahAPI (alt)</label>
+          <label class="field-inline"><input type="radio" name="provider" value="aladhan"> Aladhan (fallback)</label>
         </div>
 
         <div class="row">
@@ -56,7 +45,7 @@
       <div class="right status">
         <div id="locationReadout" class="location">Location: —</div>
         <div id="dateReadout" class="date">Date: —</div>
-        <div id="statusMsg" class="statusMsg">Ready — search a city and press Get Namaz Times.</div>
+        <div id="statusMsg" class="statusMsg">Ready — pick a city and press Get Namaz Times.</div>
       </div>
     </section>
 
