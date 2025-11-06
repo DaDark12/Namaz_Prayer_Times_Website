@@ -1,22 +1,33 @@
-# Namaz Times — Shia (Jafari) — Cinema UI
+# Shia Namaz Times — Cinema UI
 
-Static, GitHub Pages compatible front-end that shows Shia prayer times.
+Production-ready static site (GitHub Pages friendly) that:
+- Shows Shia (Jafari) prayer times
+- Global searchable cities (Nominatim) + presets
+- Grouped prayers: Fajr, Sunrise, Dhuhrain (Dhuhr+Asr), Sunset, Maghribain (Maghrib+Isha)
+- Live "Next prayer" calculation
+- Cinematic animated background + glass UI
+- Graceful fallback if external APIs fail
 
 ## Files
 - `index.html`
 - `style.css`
+- `background.js`
+- `utils.js`
 - `app.js`
+- `assets/` (optional)
+- `server.js` (optional Node proxy)
+- `package.json` (for proxy)
 
 ## How to deploy (fast)
-1. Create a GitHub repo and push these files to the root (`main` branch).
-2. In repo settings → Pages → select branch `main` and `/ (root)` → Save.
-3. Open the provided pages URL.
+1. Create a GitHub repo, push all files to the root.
+2. Settings → Pages → Branch: main, Folder: / (root).
+3. Wait a minute and open the pages URL.
 
-## Notes / troubleshooting
-- The client tries **IslamicAPI (Jafari)** first (method=0), then **Aladhan**, then a local fallback. No server required.
-- If a chosen external API is blocked by CORS from GitHub Pages in your region, the app will automatically fall back to an embedded dataset so your UI never breaks.
-- Want me to add a tiny **server proxy (server.js)** to hide API keys and avoid CORS? Say so and I’ll output it next — instant Node/Express, 30s.
+## Optional: Proxy server (recommended for heavy use)
+If you plan heavy traffic or want to hide requests / avoid CORS, deploy `server.js` (Node/Express) on Render/Heroku/Vercel. See `server.js` and `package.json`.
 
-## Want it extra-safe?
-If you don't want client-side keys visible, add a proxy `server.js` (I can generate it). Otherwise, no keys are required for the fallback flow.
+## Notes
+- Uses Aladhan `timingsByCity` and `timings` (method=0) for Shia/Jafari. If you prefer IslamicAPI, select provider and supply a key — but Aladhan works without keys for most use cases.
+- City search uses OpenStreetMap Nominatim (no key). Respect usage policy for heavy automated calls; for production, use a geocoding service or your own proxy.
+- If anything fails, app falls back to a sample dataset so UI never breaks.
 
